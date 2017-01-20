@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<properties>
+<mapservicelayer>
+    <name>
+
+    </name>
+        <url> </url>
+    <alpha>
+    
+    </alpha>
+   
+    </mapservicelayer>
+    <featureservicelayer>
+    <url>http://www.mywachswater.com/arcgis/rest/services/Leak_Detection/LeakDetection_LeakPoints/MapServer/3</url>
+        <attributes>
+            <name>Project</name>
+            <value>${PROJECT}</value>
+        </attributes>
+         <attributes>
+            <name>CREW_ADDRESS</name>
+            <value>${CREW_ADDRESS}</value>
+        </attributes>
+         <attributes>
+            <name>CREW_CHIEF</name>
+            <value>${CREW_CHIEF}</value>
+        </attributes>
+         <attributes>
+            <name>CREW_STREET</name>
+            <value>${CREW_STREET}</value>
+        </attributes>
+    </featureservicelayer>
+     <citytag>
+         austin, tx
+    </citytag>
+</properties>
