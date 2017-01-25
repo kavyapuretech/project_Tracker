@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>Bootstrap Case</title>
-      <meta charset="utf-8">
+      <title>Project Tracker</title>
+      <link rel="icon" type="image/png" href="BALTIMORE%20CITY%20SEAL_40.png">
+      <meta charset="utf-8"> 
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,9 +13,10 @@
       <script src="https://js.arcgis.com/3.19/"></script>
    
    
-    <script src="js/index_map.js"></script>
-    <script src="js/iconSwitcher.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <script src="index_map.js"></script>
+    <script src="iconSwitcher.js"></script>
+    <script type="text/javascript" src="window.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css"> 
    
    
    <script>
@@ -26,8 +29,8 @@
   $(document).ready(function() {
   
  
-      configdata = xmlreader("xml/config.xml") 
-    propertiesdata = xmlreader("xml/properies.xml")
+      configdata = xmlreader("config.xml") 
+    propertiesdata = xmlreader("properies.xml")
     test(configdata);
       test2(propertiesdata)
   
@@ -63,15 +66,27 @@ return xmlhttp;
        }
    $(function(){
    var height = $(window).height();
-   $("#map").css("height",height-163);
+   $("#map").css("height",height-110);
    $("#map").css("z-index","-1");
    $("#map").hide();
+   $("#hiddenfooter").toggle();
     $("#search").hide();
    $("#maps").click(function(){
    
     $("#map").show();
-       $("#search").show();
+    $("#search").show();
    });
+       $("#querywidget").click(function() {
+			$("#querywindow").css("display", "block");
+			$("#querywindow").css("width", "400px");
+			$("#querywindow").animate({
+				width : "400px",
+			}, 5000);
+		});
+    
+     $("button").click(function(){
+    $("#hiddenfooter").toggle(); 
+    });
    });
    
  function test(xml){
@@ -142,10 +157,13 @@ function closeNav() {
          </div>
          <div class=titlebar>
             <ul class="nav navbar-nav">
-               <li class="pull-left"><a href="https://www.puretechltd.com/" target="_blank">Home</a></li>
-               <li><a href="https://www.glassdoor.com/Overview/Working-at-Pure-Technologies-EI_IE20859.11,28.htm" target="_blank"><i>GlassDoor</i></a></li>
-               <li><a href="https://www.linkedin.com/company/pure-technologies" target="_blank"><i>linkedin</i></a></li>
-               <li><a href="https://www.google.com/maps/@39.2283899,-76.8915302,12z" target="_blank"><i>map</i></a></li>
+               <li class="pull-left"><a href="https://www.puretechltd.com/" target="_blank">
+                <i><u>Home</u></i></a></li>
+               <li><a href="https://www.glassdoor.com/Overview/Working-at-Pure-Technologies-EI_IE20859.11,28.htm" target="_blank"><i><u>GlassDoor</u></i></a></li>
+               <li><a href="https://www.linkedin.com/company/pure-technologies" target="_blank">
+                <i><u>linkedin</u></i></a></li>
+               <li><a href="https://www.google.com/maps/@39.2283899,-76.8915302,12z" target="_blank">
+                <i><u>map</u></i></a></li>
              <li><img src="./NewWachsLogo.PNG" alt="WachsWaters" style="position: relative; right:0;"></li>
          </ul></div>
       </div>
@@ -156,19 +174,16 @@ function closeNav() {
             <input type="button" value="valvs" id="valvs" class="btn btn-default">
             <input type="button" value="Hydrant" id="hydrant" class="btn btn-default" >
             <div class="toolicons"> 
-            
-               <button type="button" class="btn btn-default" data-toggle="popover" data-placement="bottom" title="popover title" data-content="pop ovedr content">pop over data content in the nav </button>
-              
-               <img src="./Basemap.jpg" height="35px" width="35px" onclick="openBasemap()" title="basemaps">
-             <span class="text">Basemaps Gallary</span>
-       <img src="./legend.jpg" height="35px" width="35px" onclick="openLegend()" title="legend">
-            <a href="#" data-toggle="popover" title="title" data-placement="bottom"  data-content= "content">legend</a>
+           
+        <img src="./Basemap.jpg" height="35px" width="35px" onclick="openBasemap()" alt="basemaps">
+        <img src="./legend.jpg" height="35px" width="35px" onclick="openLegend()" alt="legend">
+           
             </div>
          </div>
    
          <div id="myDropdown" class="dropdown-content" onclick="myFunction()">
-            <a id="maps">Maps</a>
-            <a onclick="openNav()" >Tools</a>
+            <a id="maps"  >Maps</a>
+            <a onclick="openNav()"  >Tools</a>
             <a data-toggle="modal" data-target="#myModal" >About</a>
           
          </div>
@@ -185,13 +200,39 @@ function closeNav() {
 
 <!-- Side nav div end -->
       <div class="widgets">
-         <ul>
-            <li><input type="button" value="Query Widget" class="btn btn-default"></li>
-            <li><input type="button" value="Web notes" class="btn btn-default"></li>
-            <li><input type="button" value="Assignment" class="btn btn-default"></li>
-            <li><input type="button" value="Legend" class="btn btn-default"></li>
-         </ul>
-      </div>
+		
+			<div style="position: relative"><div id="querywindow" style="float: right">
+
+					<div id="querytitle">
+						<h4>Query Widget</h4>
+						<span onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
+					</div>
+
+					<div id="querycontent">
+						<a data-toggle="modal" data-target="#myModal" class="btn btn-default">solutions team</a>
+					</div>
+
+				</div>
+                <input type="button" value="Query Widget" id="querywidget" class="btn btn-default" style="float: left"></div>
+            <br>
+            <div style="position: relative"><div id="noteswindow" style="float: right">
+
+					<div id="notestitle">
+						<h4>Webnotes</h4>
+						<span onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
+					</div>
+
+					<div id="notescontent">
+						<a data-toggle="modal" data-target="#myModal" class="btn btn-default">solutions team</a>
+					</div>
+
+				</div><input type="button" value="Web notes" id="Webnotes" class="btn btn-default" style= "float: left"></div>
+        <br>
+        <div style="position: relative"><input type="button" value="Assignment" class="btn btn-default" style= "float: left"></div>
+          <br>
+        <div style="position: relative"><input type="button" value="Legend" class="btn btn-default" style= "float: left"></div>
+		
+	</div>
       <div id="map">
 	<div id="basemapdiv">
 	<div style="height: 40px;">
@@ -204,6 +245,7 @@ function closeNav() {
     <div id="legendDiv"></div>
           <div id="search"></div>
     </div>
+    <!-- message div -->
    <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -212,7 +254,7 @@ function closeNav() {
           <h4 class="modal-title">Message</h4>
         </div>
         <div class="modal-body">
-          <iframe id="thisframe" src="./message/message.html" style="width: 260px; height: 200px;"></iframe>
+          <iframe id="thisframe" src="./message/message.html" style="width: 260px; height: 30px;"></iframe>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -230,7 +272,9 @@ function closeNav() {
    
       <footer>
          <div class="footer">
-            <h4>QuickSelect</h4>
+          <button class="style">Tools</button>
+         <div id="hiddenfooter">  
+          <h4>QuickSelect</h4>
             <select>
                <option value= "Baltimore" selected>Baltimore</option>
                <option value= "colombia">colombia</option>
@@ -239,7 +283,12 @@ function closeNav() {
             </select>
            title<input type="text">
             Address<input type="text">
-            Reports<input type="button" value="Select" class="btn btn-default">
+          Reports<input type="button" value="Select" class="btn btn-default">
+          </div>
          </div>
       </footer>
 </body></html>
+
+   
+
+
