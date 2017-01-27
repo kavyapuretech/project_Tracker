@@ -1,294 +1,149 @@
 
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>Project Tracker</title>
-      <link rel="icon" type="image/png" href="BALTIMORE%20CITY%20SEAL_40.png">
-      <meta charset="utf-8"> 
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="https://js.arcgis.com/3.19/"></script>
-   
-   
-    <script src="index_map.js"></script>
-    <script src="iconSwitcher.js"></script>
-    <script type="text/javascript" src="window.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css"> 
-   
-   
-   <script>
-  
-  var layer1_url;
-  var layer2_url;
-  var configdata;
-  var properiesdata; 
-  
-  $(document).ready(function() {
-  
- 
-      configdata = xmlreader("config.xml") 
-    propertiesdata = xmlreader("properies.xml")
-    test(configdata);
-      test2(propertiesdata)
-  
-  });
-       
-  function xmlreader(filename)
-       {
-  
-   if (window.XMLHttpRequest)
- 
-{	
- 
-xmlhttp=new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
- 
-}
- 
-else
- 
-{	
- 
-xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
- 
-}
- 
+<head>
+<title>Project Tracker</title>
+<link rel="icon" type="image/png" href="BALTIMORE%20CITY%20SEAL_40.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://js.arcgis.com/3.19/esri/css/esri.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://js.arcgis.com/3.19/"></script>
 
-xmlhttp.open("GET", filename ,false);
- 
 
-xmlhttp.send();
- 
-return xmlhttp;
+<script src="index_map.js"></script>
+<script src="infowindow.js"></script>
+<script src="iconSwitcher.js"></script>
+<script src="jquery.js"></script>
+<script type="text/javascript" src="window.js" defer></script>
+<script src="widgetwebnote.js" defer></script>
+<script src="amdloader/amdloader.js"></script>
+<script src="xmldata.js"></script>
+<script src="menudropdown.js"></script>
+<script src="message.js"></script>
 
-       }
-   $(function(){
-   var height = $(window).height();
-   $("#map").css("height",height-110);
-   $("#map").css("z-index","-1");
-   $("#map").hide();
-   $("#hiddenfooter").toggle();
-    $("#search").hide();
-   $("#maps").click(function(){
-   
-    $("#map").show();
-    $("#search").show();
-   });
-       $("#querywidget").click(function() {
-			$("#querywindow").css("display", "block");
-			$("#querywindow").css("width", "400px");
-			$("#querywindow").animate({
-				width : "400px",
-			}, 5000);
-		});
-    
-     $("button").click(function(){
-    $("#hiddenfooter").toggle(); 
-    });
-   });
-   
- function test(xml){
-  var xmlDoc = xml.responseXML;
-    var dyanamiclayer0 = xmlDoc.getElementsByTagName('dynamiclayer')[0];
-    var dyanamiclayer0_url = dyanamiclayer0.getElementsByTagName("url")[0];
-    var layer_url1 = dyanamiclayer0_url.childNodes[0];
- 
-    var dyanamiclayer1 = xmlDoc.getElementsByTagName('dynamiclayer2')[0];
-    var dyanamiclayer1_url = dyanamiclayer1.getElementsByTagName("url")[0];
-    var layer_url2 = dyanamiclayer1_url.childNodes[0];
-    
-    document.getElementById("layer1_id").value=layer_url1.nodeValue;
-    document.getElementById("layer2_id").value=layer_url2.nodeValue;
- }  
-      function test2(xml){
-          var xmlDoc = xml.responseXML;
-    var dyanamiclayer0 = xmlDoc.getElementsByTagName('featureservicelayer')[0];
-    var dyanamiclayer0_url = dyanamiclayer0.getElementsByTagName("url")[0];
-    var properties_id = dyanamiclayer0_url.childNodes[0];
- 
-   document.getElementById("properties_id").value=properties_id.nodeValue;
-          
-    var attributes = dyanamiclayer0.getElementsByTagName("attributes");
-       var txt= "";
-          for (i = 0; i < attributes.length; i++) { 
- 
-        txt += "<b>"+attributes[i].getElementsByTagName("name")[0].childNodes[0].nodeValue + "</b> : " +attributes[i].getElementsByTagName("value")[0].childNodes[0].nodeValue + "<br>";
- 
-}
-    
-    document.getElementById("txt_id").value=txt;
-      }
-       
-      </script>
-   
-   <script>
-   // open navigation panel
-function openNav() {
-    document.getElementById("mySidenav").style.height = "150px";
+<link rel="stylesheet" type="text/css" href="main.css">
 
-}
-//close navigation panel
-function closeNav() {
-    document.getElementById("mySidenav").style.height = "0px";
-}
-// open mini dropdown menu
-         function myFunction() {
-             document.getElementById("myDropdown").classList.toggle("show");
-         }
-    </script>  
-        <script>
-       function iframeclick(){
-           document.getElementById("thisframe").contentWindow.document.body.onclck= function(){
-                document.getElementById("thisframe").contentWindow.location.reload();
-           }
-       }
-       </script>
 
-   </head>
-   <body >
-      <div class="container-fluid">
-         <div class="navbar-header">
-            <a class="navbar-brand" href="#"><img src="./BALTIMORE%20CITY%20SEAL_40.png" height="30px" width="45px"></a>
-            <h6><font face="Verdana">Project Tracker<br>
-               <span class="ban">Project Tracking: Baltimore DPW</span></font>
-            </h6>
-         </div>
-         <div class=titlebar>
-            <ul class="nav navbar-nav">
-               <li class="pull-left"><a href="https://www.puretechltd.com/" target="_blank">
-                <i><u>Home</u></i></a></li>
-               <li><a href="https://www.glassdoor.com/Overview/Working-at-Pure-Technologies-EI_IE20859.11,28.htm" target="_blank"><i><u>GlassDoor</u></i></a></li>
-               <li><a href="https://www.linkedin.com/company/pure-technologies" target="_blank">
-                <i><u>linkedin</u></i></a></li>
-               <li><a href="https://www.google.com/maps/@39.2283899,-76.8915302,12z" target="_blank">
-                <i><u>map</u></i></a></li>
-             <li><img src="./NewWachsLogo.PNG" alt="WachsWaters" style="position: relative; right:0;"></li>
-         </ul></div>
-      </div>
-      <div>
-         <div class="toolbar">
-  
-            <input type="button" value="menu" id="valve" class="btn btn-default" onclick="myFunction()">
-            <input type="button" value="valvs" id="valvs" class="btn btn-default">
-            <input type="button" value="Hydrant" id="hydrant" class="btn btn-default" >
-            <div class="toolicons"> 
-           
-        <img src="./Basemap.jpg" height="35px" width="35px" onclick="openBasemap()" alt="basemaps">
-        <img src="./legend.jpg" height="35px" width="35px" onclick="openLegend()" alt="legend">
-           
-            </div>
-         </div>
-   
-         <div id="myDropdown" class="dropdown-content" onclick="myFunction()">
-            <a id="maps"  >Maps</a>
-            <a onclick="openNav()"  >Tools</a>
-            <a data-toggle="modal" data-target="#myModal" >About</a>
-          
-         </div>
-      </div>
-   
-   <!-- Side nav div start -->
-   <div id="mySidenav" class="sidenav" align="center">
-  
-     <div>
-   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> <!-- close button -->
-</div>   
-        </div>
-     
-
-<!-- Side nav div end -->
-      <div class="widgets">
-		
-			<div style="position: relative"><div id="querywindow" style="float: right">
-
-					<div id="querytitle">
-						<h4>Query Widget</h4>
-						<span onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-					</div>
-
-					<div id="querycontent">
-						<a data-toggle="modal" data-target="#myModal" class="btn btn-default">solutions team</a>
-					</div>
-
-				</div>
-                <input type="button" value="Query Widget" id="querywidget" class="btn btn-default" style="float: left"></div>
-            <br>
-            <div style="position: relative"><div id="noteswindow" style="float: right">
-
-					<div id="notestitle">
-						<h4>Webnotes</h4>
-						<span onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-					</div>
-
-					<div id="notescontent">
-						<a data-toggle="modal" data-target="#myModal" class="btn btn-default">solutions team</a>
-					</div>
-
-				</div><input type="button" value="Web notes" id="Webnotes" class="btn btn-default" style= "float: left"></div>
-        <br>
-        <div style="position: relative"><input type="button" value="Assignment" class="btn btn-default" style= "float: left"></div>
-          <br>
-        <div style="position: relative"><input type="button" value="Legend" class="btn btn-default" style= "float: left"></div>
-		
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"><img
+				src="./BALTIMORE%20CITY%20SEAL_40.png" height="30px" width="45px"></a>
+			<h6>
+				<font face="Verdana">Project Tracker<br> <span
+					class="ban">Project Tracking: Baltimore DPW</span></font>
+			</h6>
+		</div>
+		<div class=titlebar>
+			<ul class="nav navbar-nav">
+				<li class="pull-left"><a href="https://www.puretechltd.com/"
+					target="_blank"> <i><u>Home</u></i></a></li>
+				<li><a
+					href="https://www.glassdoor.com/Overview/Working-at-Pure-Technologies-EI_IE20859.11,28.htm"
+					target="_blank"><i><u>GlassDoor</u></i></a></li>
+				<li><a
+					href="https://www.linkedin.com/company/pure-technologies"
+					target="_blank"> <i><u>linkedin</u></i></a></li>
+				<li><a
+					href="https://www.google.com/maps/@39.2283899,-76.8915302,12z"
+					target="_blank"> <i><u>map</u></i></a></li>
+				<li><img src="./NewWachsLogo.PNG" alt="WachsWaters"
+					style="position: relative; right: 0;"></li>
+			</ul>
+		</div>
 	</div>
-      <div id="map">
-	<div id="basemapdiv">
-	<div style="height: 40px;">
-	<h4 style="float: left; width: 80%; margin: 5px; vertical-align: center;">Select a Basemap</h4>
-	<span style="float: right; font-size: 26px; margin: 0px 10px;" onclick="openBasemap()">&times;</span>
+	<div>
+		<div class="toolbar">
+
+			<input type="button" value="menu" id="valve" class="btn btn-default"
+				onclick="myFunction()">
+			<!--menudropdown.js-->
+			<input type="button" value="valvs" id="valvs" class="btn btn-default">
+			<input type="button" value="Hydrant" id="hydrant"
+				class="btn btn-default">
+			<div class="toolicons">
+
+				<img src="./Basemap.jpg" height="35px" width="35px"
+					onclick="openBasemap()" alt="basemaps"> <img
+					src="./legend.jpg" height="35px" width="35px"
+					onclick="openLegend()" alt="legend">
+
+			</div>
+		</div>
+
+		<div id="myDropdown" class="dropdown-content" onclick="myFunction()">
+
+			<a id="maps">Maps</a>
+			<!-- script jquery.js -->
+			<a onclick="openNav()">Tools</a> <a data-toggle="modal"
+				data-target="#myModal">About</a>
+			<!--message.js-->
+
+		</div>
 	</div>
-	<hr style="margin: 0px 0px 5px 0px;">
-    <div id="basemapGallery"></div>
+
+	<div class="widgets">
+		<input type="button" value="Query Widget" id="querywidget"
+			class="btn btn-default"> <br> <input type="button"
+			value="Web notes" id="Webnotes" class="btn btn-default">
+
+		<div id="widgetid"></div>
+		<div id="webnoteid"></div>
+
 	</div>
-    <div id="legendDiv"></div>
-          <div id="search"></div>
-    </div>
-    <!-- message div -->
-   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Message</h4>
-        </div>
-        <div class="modal-body">
-          <iframe id="thisframe" src="./message/message.html" style="width: 260px; height: 30px;"></iframe>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
- </div>
-       
+	<!--index_map.js -->
+	<div id="map">
+		<div id="basemapdiv">
+			<div style="height: 40px;">
+				<h4
+					style="float: left; width: 80%; margin: 5px; vertical-align: center;">Select
+					a Basemap</h4>
+				<span style="float: right; font-size: 26px; margin: 0px 10px;"
+					onclick="openBasemap()">&times;</span>
+			</div>
+			<hr style="margin: 0px 0px 5px 0px;">
+			<div id="basemapGallery"></div>
+		</div>
+		<div id="legendDiv"></div>
+		<div id="search"></div>
 
-    <input type="hidden" id="layer1_id">
- <input type="hidden" id="layer2_id">
- <input type="hidden" id="properties_id">  
-<input type="hidden" id="txt_id">  
-       
-   
-      <footer>
-         <div class="footer">
-          <button class="style">Tools</button>
-         <div id="hiddenfooter">  
-          <h4>QuickSelect</h4>
-            <select>
-               <option value= "Baltimore" selected>Baltimore</option>
-               <option value= "colombia">colombia</option>
-               <option value= "Sandiego">Sandiego</option>
-               <option value= "Texas">texas</option>
-            </select>
-           title<input type="text">
-            Address<input type="text">
-          Reports<input type="button" value="Select" class="btn btn-default">
-          </div>
-         </div>
-      </footer>
-</body></html>
+	</div>
+	<!--index_map.js end -->
 
-   
+	<!-- message div  message.js  -->
+	<div id="message_popup"></div>
+	<!-- message div  message.js  -->
 
+	<!-- xmldata.js -->
+	<input type="hidden" id="layer1_id">
+	<input type="hidden" id="layer2_id">
+	<input type="hidden" id="properties_id">
+	<input type="hidden" id="txt_id">
+	<!-- xmldata.js end -->
 
+	<footer>
+		<div class="footer">
+			<button class="style">Tools</button>
+			<div id="hiddenfooter">
+				<!--jquery.js -->
+				<h4>QuickSelect</h4>
+				<select>
+					<option value="Baltimore" selected>Baltimore</option>
+					<option value="colombia">colombia</option>
+					<option value="Sandiego">Sandiego</option>
+					<option value="Texas">texas</option>
+				</select> title<input type="text"> Address<input type="text">
+				Reports<input type="button" value="Select" class="btn btn-default">
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
