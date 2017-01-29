@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <title>Project Tracker</title>
-<link rel="icon" type="image/png" href="BALTIMORE%20CITY%20SEAL_40.png">
+<link rel="icon" type="image/png" href= " " id="cityfavicon">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -16,19 +16,17 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://js.arcgis.com/3.19/"></script>
 
-
-<script src="index_map.js"></script>
-<script src="infowindow.js"></script>
-<script src="iconSwitcher.js"></script>
-<script src="jquery.js"></script>
-<script type="text/javascript" src="window.js" defer></script>
-<script src="widgetwebnote.js" defer></script>
+<script src="JAVASCRIPT/mapconfig.js"></script>
+<script src="JAVASCRIPT/maplayer.js"></script>
+<script src="JAVASCRIPT/jquery.js"></script>
+<script type="text/javascript" src="widgets/querywidget.js" defer></script>
+<script src="widgets/widgetwebnote.js" defer></script>
 <script src="amdloader/amdloader.js"></script>
-<script src="xmldata.js"></script>
-<script src="menudropdown.js"></script>
-<script src="message.js"></script>
+<script src="JAVASCRIPT/xmldata.js"></script>
+<script src="JAVASCRIPT/menudropdown.js"></script>
+<script src="JAVASCRIPT/message.js"></script>
 
-<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="CSS/main.css">
 
 
 </head>
@@ -36,7 +34,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#"><img
-				src="./BALTIMORE%20CITY%20SEAL_40.png" height="30px" width="45px"></a>
+				src=" " id="citymainlogo" height="30px" width="45px"></a>
 			<h6>
 				<font face="Verdana">Project Tracker<br> <span
 					class="ban">Project Tracking: Baltimore DPW</span></font>
@@ -55,7 +53,7 @@
 				<li><a
 					href="https://www.google.com/maps/@39.2283899,-76.8915302,12z"
 					target="_blank"> <i><u>map</u></i></a></li>
-				<li><img src="./NewWachsLogo.PNG" alt="WachsWaters"
+				<li><img src="./images/NewWachsLogo.PNG" alt="WachsWaters"
 					style="position: relative; right: 0;"></li>
 			</ul>
 		</div>
@@ -71,9 +69,9 @@
 				class="btn btn-default">
 			<div class="toolicons">
 
-				<img src="./Basemap.jpg" height="35px" width="35px"
+				<img src="./images/Basemap.jpg" height="35px" width="35px"
 					onclick="openBasemap()" alt="basemaps"> <img
-					src="./legend.jpg" height="35px" width="35px"
+					src="./images/legend.jpg" height="35px" width="35px"
 					onclick="openLegend()" alt="legend">
 
 			</div>
