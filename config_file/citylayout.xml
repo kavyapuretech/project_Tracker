@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configSettings>
+	<settings>
+		<label>XML Default</label>
+		<apptitle>Project Tracking: Baltimore DPW</apptitle>
+		<citylogo>images/BALTIMORECITYSEAL_40.png</citylogo>
+		<customerlogo>
+			<source></source>
+		</customerlogo>
+		<homelink>
+			<url>http://www.wachsws.com/</url>
+		</homelink>
+		<newslink>
+			<url></url>
+		</newslink>
+		<solutionslink>
+			<url></url>
+		</solutionslink>
+		<serviceslink>
+			<url></url>
+		</serviceslink>
+	</settings>
+</configSettings>
+ 
